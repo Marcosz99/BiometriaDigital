@@ -1,4 +1,4 @@
-package autenticacao;
+package modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +12,6 @@ import javax.persistence.Table;
  *
  * @author Admin
  */
-
 @Entity
 @Table(name = "usuarios") // Define o nome da tabela no banco de dados
 public class Usuario {
@@ -31,6 +30,9 @@ public class Usuario {
     private String senhaHash;
 
     @Column(nullable = false) // Papel é obrigatório
+    private String cpf;
+
+    @Column(nullable = false) // Papel é obrigatório
     private String papel;
 
     @Column(nullable = false) // Define que a autenticação de dois fatores é obrigatoriamente false por padrão
@@ -40,19 +42,18 @@ public class Usuario {
     private byte[] biometriaDigital;
 
     // Construtor
-    public Usuario(Long id, String nome, String nomeUsuario, String senhaHash, String papel) {
+    public Usuario(Long id, String nome, String nomeUsuario, String senhaHash, String cpf, String papel) {
         this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
         this.senhaHash = senhaHash;
+        this.cpf = cpf;
         this.papel = papel;
         this.autenticacaoDoisFatoresHabilitada = false; // Inicialmente, a 2FA está desabilitada
     }
 
     public Usuario() {
     }
-    
-    
 
     // Getters e Setters
     public Long getId() {
